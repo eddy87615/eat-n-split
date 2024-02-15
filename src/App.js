@@ -81,6 +81,7 @@ export default function App() {
         <FormSplitBill
           selectedFriend={selectedFriend}
           onSplitBill={handleSplitBill}
+          key={selectedFriend.id}
         />
       )}
     </div>
@@ -106,7 +107,7 @@ function Friend({ friend, onSelection, selectedFriend }) {
   const isSelected = selectedFriend?.id === friend.id;
 
   return (
-    <li>
+    <li className={isSelected ? 'selected' : ''}>
       <img src={friend.image} alt={friend.name} />
       <h3>{friend.name}</h3>
 
@@ -140,6 +141,7 @@ function FormAddFriend({ onAddFriend }) {
 
     const id = crypto.randomUUID();
     const newFriend = {
+      id,
       name,
       image: `${image}?=${id}`,
       balance: 0,
